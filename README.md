@@ -11,26 +11,14 @@ This is a small Xcode project containing a class that processes a video using a 
 
 Here is a series of frames from the original video (left) and the generated clip with bounding boxes (right):
 
-<div align="center">
-<br/>
-<img align="center" title="Frame" width="250" src="./docs/clip1/frame_1.webp.png">
-<img align="center" title="Frame" width="250" src="./docs/clip2/frame_1.webp.png">
-
-<img align="center" title="Frame" width="250" src="./docs/clip1/frame_4.webp.png">
-<img align="center" title="Frame" width="250" src="./docs/clip2/frame_4.webp.png">
-
-<img align="center" title="Frame" width="250" src="./docs/clip1/frame_6.webp.png">
-<img align="center" title="Frame" width="250" src="./docs/clip2/frame_6.webp.png">
-
-<img align="center" title="Frame" width="250" src="./docs/clip1/frame_7.webp.png">
-<img align="center" title="Frame" width="250" src="./docs/clip2/frame_7.webp.png">
-
-<img align="center" title="Frame" width="250" src="./docs/clip1/frame_8.webp.png">
-<img align="center" title="Frame" width="250" src="./docs/clip2/frame_8.webp.png">
-
-<img align="center" title="Frame" width="250" src="./docs/clip1/frame_10.webp.png">
-<img align="center" title="Frame" width="250" src="./docs/clip2/frame_10.webp.png">
-</div>
+| Original Frame                | Detected with Bounding Boxes     |
+|------------------------------|----------------------------------|
+| ![](./docs/clip1/frame_1.webp.png) | ![](./docs/clip2/frame_1.webp.png) |
+| ![](./docs/clip1/frame_4.webp.png) | ![](./docs/clip2/frame_4.webp.png) |
+| ![](./docs/clip1/frame_6.webp.png) | ![](./docs/clip2/frame_6.webp.png) |
+| ![](./docs/clip1/frame_7.webp.png) | ![](./docs/clip2/frame_7.webp.png) |
+| ![](./docs/clip1/frame_8.webp.png) | ![](./docs/clip2/frame_8.webp.png) |
+| ![](./docs/clip1/frame_10.webp.png)| ![](./docs/clip2/frame_10.webp.png) |
 
 ---
 
