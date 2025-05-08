@@ -133,6 +133,10 @@ CGImageRef Detector::detectImg(CGImageRef inImage) {
 void Detector::exportDetectedFramesUpTo(NSUInteger frameIndexEnde, NSURL* videoInURL, NSURL* videoOutURL) {
     AVAsset *asset = [AVAsset assetWithURL:videoInURL];
     NSError *error = nil;
+    
+    __block CFAbsoluteTime lastPrintTime = CFAbsoluteTimeGetCurrent();
+    __block NSUInteger framesSinceLastPrint = 0;
+    
     [[NSFileManager defaultManager] removeItemAtURL:videoOutURL error:nil];
     AVAssetReader *reader = [[AVAssetReader alloc] initWithAsset:asset error:&error];
     AVAssetWriter *writer = [[AVAssetWriter alloc] initWithURL:videoOutURL fileType:AVFileTypeQuickTimeMovie error:&error];
@@ -162,6 +166,14 @@ void Detector::exportDetectedFramesUpTo(NSUInteger frameIndexEnde, NSURL* videoI
     [writerInput requestMediaDataWhenReadyOnQueue:processingQueue usingBlock:^{
         NSUInteger frameIndex=0;
         while (frameIndex<frameIndexEnde && [writerInput isReadyForMoreMediaData] && [reader status] == AVAssetReaderStatusReading) {
+            framesSinceLastPrint++;
+            CFAbsoluteTime now = CFAbsoluteTimeGetCurrent();
+            if (now - lastPrintTime >= 1.0) {
+                fprintf(stderr, "\r⏱ Frame %4lu  | Verarbeitung: %2lu FPS", (unsigned long)frameIndex, (unsigned long)framesSinceLastPrint);
+                fflush(stderr);
+                lastPrintTime = now;
+                framesSinceLastPrint = 0;
+            }
             CMSampleBufferRef sampleBuffer = [readerOutput copyNextSampleBuffer];
             if (sampleBuffer) {
                 // Schritt 1: CMSampleBufferRef zu CGImageRef konvertieren
@@ -189,7 +201,7 @@ void Detector::exportDetectedFramesUpTo(NSUInteger frameIndexEnde, NSURL* videoI
         }
         [writerInput markAsFinished];
         [writer finishWritingWithCompletionHandler:^{
-            NSLog(@"✅ Alle Frames geschrieben, Ausgabe ist fertig.");
+            fprintf(stderr, "\r✅ Verarbeitung abgeschlossen: %lu Frames verarbeitet.\n", (unsigned long)frameIndex);
             exit(0);
         }];
     }];
