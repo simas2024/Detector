@@ -47,13 +47,13 @@ To run a sample object detection, you can use and download the `clip640x424.mov`
 3. In Terminal, change to the build directory:
 
 ```bash
-   cd <build-dir>
+cd <build-dir>
 ```
 
 4.	Download the sample video:
 
 ```bash
-    curl -L -o clip.mov https://github.com/simas2024/Dataset/raw/refs/heads/main/Test/data/clip640x424.mov
+curl -L -o clip.mov https://github.com/simas2024/Dataset/raw/refs/heads/main/Test/data/clip640x424.mov
 ```
 
 5. Run the detection:
@@ -65,3 +65,15 @@ You can customize the file paths and the end frame directly in the code line ins
 
 ```objc
 d.exportDetectedFramesUpTo(3000, [NSURL fileURLWithPath:@"clip.mov"], [NSURL fileURLWithPath:@"clip_detect.mov"]);
+```
+
+## Performance Benchmarks
+
+Object detection performance (in frames per second, FPS) varies significantly depending on the hardware. The following measurements were taken using the given model and the clip from the example run https://github.com/simas2024/Dataset/raw/refs/heads/main/Test/data/clip640x424.mov:
+
+| Device                  | CPU                      | Memory | Processing FPS |
+|------------------------|--------------------------|--------|----------------|
+| Mac mini M1 (2020)     | Apple M1                 | 16 GB  | ~80 FPS        |
+| MacBook Air (2020) | Intel Core i7 @ 1.2 GHz  | 16 GB  | ~5 FPS         |
+
+> Measurements cover end-to-end processing: reading, detection, bounding box overlay, and writing to output video.
