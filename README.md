@@ -25,7 +25,7 @@ Here is a series of frames from the original video (left) and the generated clip
 ## Setup
 
 ```bash
-git clone <repo>
+git clone https://github.com/simas2024/Detector.git
 ```
 
 ---
@@ -40,7 +40,7 @@ git clone <repo>
 
 ### Run
 
-To run a sample object detection, you can use and download the `clip640x424.mov` file from my repository <link>.
+To run a sample object detection, you can use and download the `clip640x424.mov` file from my repository https://github.com/simas2024/Dataset.git.
 
 1. Open the Xcode project.
 2. Build the project with `⌘B`.
@@ -53,7 +53,7 @@ To run a sample object detection, you can use and download the `clip640x424.mov`
 4.	Download the sample video:
 
 ```bash
-    curl -L -o clip.mov <link>
+    curl -L -o clip.mov https://github.com/simas2024/Dataset/raw/refs/heads/main/Test/data/clip640x424.mov
 ```
 
 5. Run the detection:
